@@ -5,9 +5,9 @@
 
 An online ordering platform for restaurants. Customers place orders for  pickup or delivery, and admins manage everything from a real-time  dashboard. Admins can mark orders ready for pickup and track unfinished  orders, ensuring efficient service and customer satisfaction
 
+![Screenshot 2024-07-24 100854](https://github.com/user-attachments/assets/44daf096-2a2e-42f4-a96f-66426ed92ca7)
 
-![Screenshot 2024-07-24 100854](https://github.com/user-attach
-ments/assets/9d899fc6-4cca-4311-b942-0be001e098f4).
+
 
 
 ![Screenshot 2024-07-24 100916](https://github.com/user-attachments/assets/23779342-280f-451a-854d-61860bf771d4)
