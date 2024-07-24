@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="home_page_style.css">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper-bundle.min.css"/>
+   <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+
+shopping-cart {
+    
+    flex-direction: column;
+    align-items: center;
+}
+
+
+    button {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        background-color: green;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .step-buttons {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .step-buttons button {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        background-color: #ddd;
+        transition: background-color 0.3s ease;
+    }
+
+    .step-buttons button.active {
+        background-color: green;
+        color: white;
+    }
+
+    .step {
+        display: none;
+    }
+
+    .step.active {
+        display: block;
+    }
+
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .box {
+width: 250px;
+margin: 20px;
+border: 1px solid #ddd;
+border-radius: 5px;
+padding: 10px;
+background-color: #fff;
+box-shadow: 0 0 5px rgba(46, 136, 219, 0.1);
+text-align: center;
+transition: box-shadow 0.6s ease-in-out;
+}
+
+.box:hover {
+box-shadow: 0 0 15px rgb(0, 250, 33); 
+}
+
+.box img {
+max-width: 100%;
+height: 150px; 
+object-fit: cover; 
+border-radius: 5px;
+}
+    .box img {
+        max-width: 100%;
+        border-radius: 5px;
+    }
+
+    .box h3 {
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    .price {
+        font-size: 16px;
+        color: green;
+        margin-top: 5px;
+    }
+
+    .stars {
+        margin-top: 5px;
+    }
+
+    .stars i {
+        color: gold;
+    }
+
+    .button {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        background-color: green;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: darkgreen;
+    }
+ 
+    .product-slider{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .container {
+max-width: 800px;
+margin: 50px auto;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: #fff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+text-align: center;
+}
+
+.heading {
+text-align: center;
+margin-bottom: 30px; 
+}
+
+ .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    @keyframes animatetop {
+        from {top: -300px; opacity: 0}
+        to {top: 0; opacity: 1}
+    }
+
+</style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">
+            <i class="fa fa-shopping-basket" aria-hidden="true">Logo</i>    
+        </a>
+        <nav class="navbar">
+            <a href="Home_page.html">Home</a>
+            <a href="features_Page.html">Features</a>
+            <a href="Products.html">Menu</a>
+            <a href="categories.html">Catergory</a>
+            <a href="Reviews.html">Reviews</a>
+            <a href="blogs.html">Blogs</a>
+        </nav>
+        <div class="icons">
+            <div class="fa fa-bars" id="menu-btn"></div>
+            <div class="fa fa-search" id="search-btn"></div>
+            <div class="fa fa-shopping-cart" id="cart-btn"></div>
+            <div class="fa fa-user" id="login-btn"></div>
+            
+        </div>
+        <form class="search-form">
+            <input type="search" id="search-box" name="" placeholder="Search here...">
+            <label for="search-box" class="fa fa-search"></label>
+        </form>
+        
+        <div class="shopping-cart">
+            <div  class="box">
+<section>
+        <div class="cart-content" id="cart-items">
+            <!-- Cart items will be displayed here -->
+		
+        </div>
+        
+        <!-- Total amount -->
+    <div class="total" id="cart-total">
+        Total: $0
+    </div>
+	        	
+       
+<form action="checkout.php" method="post" >
+    <!-- Other form fields -->
+	  
+            <span class="close">&times;</span>
+    <select id="pickup-time" name="pickup-time">
+        <!-- Pickup time options -->
+		 <option value="9:00 AM">9:00 AM</option>
+                <option value="10">10:00 AM</option>
+                <option value="11">11:00 AM</option>
+                <option value="12">12:00 PM</option>
+                <option value="13">13:00 PM</option>
+                <option value="14">14:00 PM</option>
+				<option value="15">15:00 PM</option>
+                <option value="16">16:00 PM</option>
+                <option value="17">17:00 PM</option>	
+		
+    </select>
+	
+	<br>
+    
+    
+    <input type="hidden" id="total_amount" name="total_amount" value="total">
+
+    <!-- Cart input field -->
+    <input type="hidden" id="cart" name="cart" value="[]">
+    
+    <input type="submit" id="checkout-btn" name="checkout-btn" class="btn" value="Checkout">
+</form>
+</section>
+            </div>
+			</div>
+            <form action="#" class="login-form">
+
+                <h3>login now</h3>
+                <input type="email" placeholder="your email" class="box">
+                <input type="password" placeholder="your password" class="box">
+                <p>Forget Your password? <a href="#">Click here</a></p>
+                 <p>Dont Have An Account? <a href="#">Create Now</a></p>
+                <input type="submit" value="Login Now"class="btn">
+                
+            </form>
+        
+    </header>
+<br>
+<br>     
+<br>
+<br>  
+    <div class="container">
+        <div class="step-buttons">
+            <button id="cookedFoodBtn" class="active" onclick="toggleStep('cooked')">Cooked Food</button>
+            <button id="bakedFoodBtn" onclick="toggleStep('baked')">Baked Food</button>
+        </div>
+        <h1 class="heading">Our <span>Menu</span></h1>
+        <div id="cookedFoodStep" class="step active">
+            <div id="cookedFoodStep" class="step"></div>
+            <h2>Cooked Food Section</h2>
+            
+            <section class="products" id="products">
+              
+                <div class="product-slider">
+                      <div class="box">
+                        <img src="image/papMashotsha.jpeg">
+                        <h3>Pap Le Mashotsa</h3>
+    
+                        <div class="price">R29.99</div>
+    
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half"></i>   
+                         </div>
+    
+                       <button onclick="addToCart('Pap Le Mashotsa', 29.99)">Add to Cart</button>
+           
+    
+                      </div>
+                    
+    
+    
+                    <div class="box">
+    
+                        <img src="image/Dombolo_And_Beefstew.png">
+                        <h3>Dombolo Le Beefstew</h3>
+                        <div class="price">R19.99</div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half"></i>
+                        </div>
+                            <button onclick="addToCart('Dombolo Le Beefstew', 19.99)">Add to Cart</button>
+           
+                      </div>
+                    
+                    <div class="box">
+                        <img src="image/papAndMogodu.jpg">
+                        <h3>Pap Le Mogodu</h3>
+                        <div class="price">R29.99</div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half"></i>
+                        </div>
+							  <button onclick="addToCart('Pap Le Mogodu', 29.99)">Add to Cart</button>
+           
+                    
+                      </div>
+                    
+                    <div class="box">
+                        <img src="image/pap,voroso.jpeg">
+                        <h3>Pap Le Vors</h3>
+    
+                        <div class="price">R49.99
+    
+                        </div>
+                        <div class="stars"> 
+						<i class="fa fa-star">
+						</i><i class="fa fa-star">
+						</i><i class="fa fa-star">
+						</i><i class="fa fa-star">
+						</i><i class="fa fa-star-half"></i>
+                        
+                        </div>
+                            <button onclick="addToCart('pap Le Vors', 49.99)">Add to Cart</button>
+           
+                    
+                      </div>
+                      <div class="box">
+                        <img src="image/zuluu.jpg">
+                        <h3>Dombolo, Vors Le Cabbage</h3>
+    
+                        <div class="price">R69.99
+    
+                        </div>
+                        <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                        
+                        </div>
+                       <button onclick="addToCart('Dombolo, vors Le Cabbage', 19.99)">Add to Cart</button>
+           
+                    
+					 </div>
+                      <div class="box">
+                        <img src="image/riceAndstewbeef.jpeg">
+                        <h3>Rice And Beefstew</h3>
+    
+                        <div class="price">R49.99
+    
+                        </div>
+                        <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                        
+                        </div>
+                            <button onclick="addToCart(item2)">add to cart</button>
+                      </div>
+                   
+                      <div class="box">
+                        <img src="image/Sadza,beefandveg.jpeg">
+                        <h3>Sadza, Beef and Veg</h3>
+    
+                        <div class="price">R59.99
+    
+                        </div>
+                        <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                        
+                        </div>
+                                                        <button onclick="addToCart(item2)">add to cart</button>
+                      </div>
+                    
+                <div class="box">
+                    <img src="image/VillageChicken.jpeg">
+                    <h3>Chicken</h3>
+
+                    <div class="price">R29.99
+
+                    </div>
+                    <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                    
+                    </div>
+                                                    <button onclick="addToCart(item2)">add to cart</button>
+                  </div>
+                  <div class="box">
+                    <img src="image/p4.jpeg">
+                    <h3>Digatha</h3>
+
+                    <div class="price">R19.99
+
+                    </div>
+                    <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                    
+                    </div>
+                            <button onclick="addToCart(item2)">add to cart</button>
+                  </div>
+                  <div class="box">
+                    <img src="image/Chakalaka.png">
+                    <h3>Chakalaka</h3>
+
+                    <div class="price">R9.99
+
+                    </div>
+                    <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                    
+                    </div>
+                    <button onclick="addToCart('Chackalaka', 9.99)">Add to Cart</button>
+           
+                    
+				  </div>
+                  <div></div>
+            </section>
+        </div>
+        <div id="bakedFoodStep" class="step">
+           
+            <h2><b>Baked Food Section</b></h2>
+           
+            <section class="products" id="products">
+              
+                <div class="product-slider">
+                      <div class="box">
+                        <img src="image/p1.jpeg">
+                        <h3>Chocolate Cake</h3>
+    
+                        <div class="price">R79.99</div>
+    
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half"></i>   
+                         </div>
+    
+                      <button onclick="addToCart('Chocolate cake', 79.99)">Add to Cart</button>
+           
+                    
+                      </div>
+                    
+    
+    
+                    <div class="box">
+    
+                        <img src="image/p5.jpeg">
+                        <h3>Sourdough</h3>
+                        <div class="price">R5.99</div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half"></i>
+                        </div>
+                                                       <button onclick="addToCart(item2)">add to cart</button>
+                      </div>
+                    
+                    <div class="box">
+                        <img src="image/EasyWhite SandwichBread.jpeg">
+                        <h3>White Bread</h3>
+                        <div class="price">R19.99</div>
+                        <div class="stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half"></i>
+                        </div>
+                          <button onclick="addToCart('White Bread', 19.99)">Add to Cart</button>
+         
+
+						</div>
+                    
+                    
+    
+                     
+                      <div class="box">
+                        <img src="image/product-4.jpg">
+                        <h3>Baguette</h3>
+    
+                        <div class="price">R9.99
+    
+                        </div>
+                        <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                        
+                        </div>
+                         <button onclick="addToCart('Baguette', 9.99)">Add to Cart</button>
+           
+                    
+					   </div>
+                      <div class="box">
+                        <img src="image/product-9.jpg">
+                        <h3>Vanilla Cake</h3>
+    
+                        <div class="price">R499.99
+    
+                        </div>
+                        <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                        
+                        </div>
+                      <button onclick="addToCart('Vanilla', 499.99)">Add to Cart</button>
+           
+                    
+					</div>
+                      <div class="box">
+                        <img src="image/product-1.jpg">
+                        <h3>Piece Of Cake</h3>
+    
+                        <div class="price">R4.99
+    
+                        </div>
+                        <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                        
+                        </div>
+                       <button onclick="addToCart('Piece of cake ', 4.99)">Add to Cart</button>
+           
+                    
+
+					 </div>
+                     
+    
+                      <div class="box">
+                        <img src="image/Dombolo.png">
+                        <h3>Dombolo</h3>
+    
+                        <div class="price">R19.99
+    
+                        </div>
+                        <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                        
+                        </div>
+                       <button onclick="addToCart('Dombolo ', 19.99)">Add to Cart</button>
+           
+                     
+                    
+					 </div>
+                      <div class="box">
+                        <img src="image/croissant.jpeg">
+                        <h3>Croissant</h3>
+    
+                        <div class="price">R24.99
+    
+                        </div>
+                        <div class="stars"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i>
+                        
+                        </div>
+  <button onclick="addToCart('Croissant', 24.99)">Add to Cart</button>
+           
+		   
+	   
+                    
+</div>
+                </div>
+      
+            </section>
+    
+
+	
+        </div>
+    </div>
+
+ 
+   <script>
+    // JavaScript to handle checkout button click
+    document.getElementById("checkout-btn").onclick = function() {
+        // Display the modal when checkout button is clicked
+        modal.style.display = "block";
+    }
+
+    // JavaScript for managing cart
+
+    // Cart array to hold items
+    let cart = [];
+
+    // Function to add item to cart
+    function addToCart(itemName, price) {
+        // Check if item is already in cart
+        let existingItem = cart.find(item => item.name === itemName);
+
+        if (existingItem) {
+            // Increment quantity if item is already in cart
+            existingItem.quantity++;
+        } else {
+            // Add new item to cart
+            cart.push({ name: itemName, price: price, quantity: 1 });
+        }
+
+        // Update cart display
+        displayCart();
+    }
+
+    // Function to update cart display
+    function displayCart() {
+        const cartItemsElement = document.getElementById('cart-items');
+
+        // Clear existing cart display
+        cartItemsElement.innerHTML = '';
+
+        // Loop through cart items and display them
+        cart.forEach(item => {
+            const cartItemElement = document.createElement('div');
+            cartItemElement.innerHTML = `
+                <span>${item.name}</span>
+                <span>Quantity: <input type="number" value="${item.quantity}" onchange="updateQuantity('${item.name}', this.value)"></span>
+                <span>R${item.price * item.quantity}</span>
+                <button onclick="removeFromCart('${item.name}')">Remove</button>
+            `;
+            cartItemsElement.appendChild(cartItemElement);
+        });
+
+        // Update total amount
+        const totalElement = document.getElementById('cart-total');
+        const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+        totalElement.textContent = `Total: R${total}`;
+
+        // Update total amount input field
+        const totalAmountInput = document.getElementById('total_amount');
+        totalAmountInput.value = total;
+
+        // Update cart input field
+        const cartInput = document.getElementById('cart');
+        cartInput.value = JSON.stringify(cart);
+    }
+
+    // Function to update item quantity in cart
+    function updateQuantity(itemName, quantity) {
+        let item = cart.find(item => item.name === itemName);
+        item.quantity = parseInt(quantity);
+        displayCart();
+    }
+
+    // Function to remove item from cart
+    function removeFromCart(itemName) {
+        cart = cart.filter(item => item.name !== itemName);
+        displayCart();
+    }
+</script>
+
+       <section class="footer">
+        <div class="box-container">
+            <div class="box">
+           <h3>Logo <i class="fa fa-shopping-basket"></i></h3>
+           <p>Feel free to follow us on our social media handlers all links are given below</p>
+            <div class="share">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-linkedin"></a>
+        </div>
+        </div>
+        <div class="box">
+            <h3>Contact Info</h3>
+                <a href="#" class="links"><i class="fa fa-phone"></i>+72 6765 3455</a>
+                <a href="#" class="links"><i class="fa fa-phone"></i>+82 5677 6438</a>
+                <a href="#" class="links"><i class="fa fa-envelope"></i> rakubu@gmail.com</a>
+                <a href="#" class="links"><i class="fa fa-map-marker"></i>ivy park, polokwane ,Limpopo</a>
+         
+        </div>
+        <div class="box">
+            <h3>Quick Links</h3>
+                <a href="#" class="links"><i class="fa fa-arrow-right"></i>Home</a>
+                <a href="#" class="links"><i class="fa fa-arrow-right"></i>Features</a>
+                <a href="#" class="links"><i class="fa fa-arrow-right"></i>Products</a>
+                <a href="#" class="links"><i class="fa fa-arrow-right"></i>Review </a>
+                <a href="#" class="links"><i class="fa fa-arrow-right"></i>Blogs </a>
+        </div>
+        <div class="box">
+            <h3>Newsletter</h3>
+            <p>Subscribe for latest updates</p>
+            <input type="email" placeholder="your email" class ="email">
+            <input type="submit" values="Subscribe" class="btn">
+            <img src=""/>
+           </div>
+        </div>
+       </section>
+       
+    
+    <script src="home_page_script.js"></script>
+</body>
+</html> 

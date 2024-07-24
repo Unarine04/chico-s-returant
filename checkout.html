@@ -1,0 +1,82 @@
+To display the cart details before the button is pressed, you can move the code that displays cart information and total price outside of the form submission event listener. Here's the modified code:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <!-- Add your stylesheets and other necessary scripts -->
+</head>
+<body>
+    <h1>Checkout</h1>
+    <div id="cart-info"></div>
+    <div id="total-price"></div>
+    <form id="checkout-form">
+        <label for="time-slot">Select Pickup Time:</label>
+        <select id="time-slot" name="time-slot">
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+        </select>
+        <input type="submit" value="Place Order">
+    </form>
+
+    <script>
+        // Retrieve cart information and total price from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const cartInfo = JSON.parse(decodeURIComponent(urlParams.get('cart')));
+        const totalPrice = urlParams.get('total');
+
+        // Display cart information
+        const cartInfoElement = document.getElementById('cart-info');
+        cartInfoElement.innerHTML = '<h2>Cart Information</h2>';
+        cartInfo.forEach(item => {
+            cartInfoElement.innerHTML += `<p>${item.quantity}x ${item.name}: R${item.price * item.quantity}</p>`;
+        });
+
+        // Display total price
+        const totalPriceElement = document.getElementById('total-price');
+        totalPriceElement.innerHTML = `<h2>Total Price: R${totalPrice}</h2>`;
+
+        // Increment order number
+        let orderNumber = localStorage.getItem('orderNumber') || 0;
+        orderNumber++;
+        localStorage.setItem('orderNumber', orderNumber);
+
+        // Display order number
+        const orderNumberElement = document.createElement('p');
+        orderNumberElement.innerHTML = `Order Number: ${orderNumber}`;
+        document.body.insertBefore(orderNumberElement, document.getElementById('checkout-form'));
+
+        // Handle form submission
+        const form = document.getElementById('checkout-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const timeSlot = document.getElementById('time-slot').value;
+            // Here you can handle the form submission, such as sending the order details to a server
+            // For now, let's just log the selected time slot
+            console.log('Selected Time Slot:', timeSlot);
+
+            // Redirect to thank you page
+            const queryParams = new URLSearchParams({
+                cart: JSON.stringify(cartInfo),
+                total: totalPrice,
+                pickupTime: timeSlot,
+                orderNumber: orderNumber
+            }).toString();
+            window.location.href = `thank_you.html?${queryParams}`;
+        });
+    </script>
+</body>
+</html>
+```
+
+Now, the cart details will be displayed as soon as the page loads, and pressing the "Place Order" button will redirect the user to the thank you page.
