@@ -7,7 +7,7 @@ An online ordering platform for restaurants. Customers place orders for  pickup 
 
 
 ![Screenshot 2024-07-24 100854](https://github.com/user-attach
-ments/assets/9d899fc6-4cca-4311-b942-0be001e098f4)
+ments/assets/9d899fc6-4cca-4311-b942-0be001e098f4).
 
 
 ![Screenshot 2024-07-24 100916](https://github.com/user-attachments/assets/23779342-280f-451a-854d-61860bf771d4)
